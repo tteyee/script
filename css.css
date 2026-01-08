@@ -297,56 +297,110 @@ table tr:hover {
 
 /* 목록 스타일 */
 ul {
-    margin: 1rem 0;
+    margin: 1.5rem 0;
     padding-left: 0;
 }
 
-/* 일반 목록은 기본 스타일 유지 */
+/* 일반 목록 세련되게 변경 */
 ul li {
-    list-style: disc;
-    margin-left: 1.5rem;
-    padding: 0.3rem 0;
-    color: #374151;
+    list-style: none;
+    margin-bottom: 0.8rem;
+    padding: 0.5rem 0.8rem 0.5rem 1.8rem;
+    color: #334155;
+    position: relative;
+    line-height: 1.6;
+    background: #f8fafc;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0.7rem;
+    color: #3b82f6;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+ul li:hover {
+    background: #eff6ff;
+    transform: translateX(5px);
+    color: #1e40af;
 }
 
 /* 블로그 컨텐츠용 목록만 화살표 적용 */
 .content-list li {
     list-style: none;
-    padding: 0.5rem 0 0.5rem 2rem;
+    padding: 0.6rem 0.8rem 0.6rem 2.2rem;
     position: relative;
     color: #374151;
     margin-left: 0;
+    background: transparent;
+    border-radius: 0;
 }
 
 .content-list li::before {
-    content: "▸"; /* 화살표 */
+    content: "➔"; /* 더 세련된 화살표 */
     position: absolute;
-    left: 0;
-    top: 0.5rem;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
     color: #2563eb;
+    font-size: 0.9rem;
     font-weight: bold;
+}
+
+.content-list li:hover {
+    background: transparent;
+    transform: none;
 }
 
 /* 강조 목록 (체크마크) */
 .check-list li {
     list-style: none;
-    padding: 0.5rem 0 0.5rem 2rem;
+    padding: 0.7rem 0.8rem 0.7rem 2.5rem;
     position: relative;
     color: #374151;
     margin-left: 0;
+    background: #f0fdf4;
+    border-radius: 10px;
+    margin-bottom: 0.6rem;
 }
 
 .check-list li::before {
-    content: "✅"; /* 체크마크 */
+    content: "✔"; /* 체크마크 */
     position: absolute;
-    left: 0;
-    top: 0.5rem;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #16a34a;
+    font-weight: bold;
+}
+
+ol {
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
 }
 
 ol li {
-    padding: 0.5rem 0;
-    color: #374151;
+    padding: 0.6rem 0.8rem;
+    color: #334151;
     font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+ol li::marker {
+    color: #2563eb;
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+ol li:hover {
+    color: #1e40af;
+    transform: translateX(3px);
 }
 
 /* 인용구 스타일 (깔끔한 카드 형태) */
