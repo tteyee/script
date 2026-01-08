@@ -1535,3 +1535,7 @@ body, button, input, select, textarea {
         white-space: nowrap !important; /* 기본정보는 한 줄 유지 */
     }
 }
+
+.single header.site-header {
+    display: none;
+}
