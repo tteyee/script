@@ -28,7 +28,7 @@
 /* H1 - 메인 제목 (워드프레스에서 자동 적용) */
 h1 {
     color: #1e293b;
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     font-weight: 800;
     margin: 2rem 0 1.5rem 0;
     text-align: center;
@@ -39,7 +39,7 @@ h1 {
 /* H2 - 대제목 (카드 스타일) */
 h2 {
     color: #1e293b;
-    font-size: 1.9rem;
+    font-size: 1.5rem;
     font-weight: 800;
     margin: 3rem 0 1.5rem 0;
     padding: 1.5rem 2rem;
@@ -54,14 +54,14 @@ h2 {
 h2::before {
     content: "🎯";
     margin-right: 0.8rem;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     filter: drop-shadow(0 0 3px rgba(255,255,255,0.5));
 }
 
 /* H3 - 소제목 (미니멀 라인 스타일) */
 h3 {
     color: #2563eb;
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     font-weight: 600;
     margin: 2.5rem 0 1.2rem 0;
     padding: 1rem 0 0.8rem 0;
@@ -76,7 +76,7 @@ h3 {
 h3::before {
     content: "▶";
     margin-right: 0.6rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #3b82f6;
 }
 
@@ -1369,24 +1369,74 @@ body, button, input, select, textarea {
   60%{ transform: translateY(0) scale(1.02); }
 }
 
-/* 모바일에서 표가 깨지지 않게 가로 스크롤 생성 */
-@media screen and (max-width: 768px) {
-    figure.wp-block-table {
-        overflow-x: auto;
-        display: block;
+@media screen and (max-width: 600px) {
+    /* 1. 표 개별 스크롤 해제 (전체 페이지 스크롤 유도) */
+    figure.wp-block-table, 
+    .entry-content table {
+        display: table; /* block에서 다시 table로 변경하여 컨테이너를 뚫고 나가게 함 */
+        width: auto;
+        min-width: 100%;
+        overflow-x: visible; /* 개별 스크롤 해제 */
     }
-    table {
-        min-width: 600px; /* 표의 최소 너비를 강제하여 글자 뭉침 방지 */
-        word-break: keep-all; /* 단어 단위 줄바꿈 방지 */
-        white-space: nowrap; /* 텍스트 줄바꿈 방지 */
-    }
-    table td, table th {
-        white-space: normal; /* 셀 안의 내용이 너무 길면 자연스럽게 줄바꿈 */
-        padding: 10px !important;
-    }
-}
 
-/* 개별 포스트(글) 상세 페이지에서만 헤더 숨기기 */
-.single-post .site-header {
-    display: none !important;
+    /* 전체 컨테이너에서 가로 넘침 허용 */
+    .entry-content, .preview-container {
+        overflow-x: visible !important;
+    }
+
+    /* 2. FAQ 테이블 */
+    .faq-table {
+        display: table !important;
+        min-width: 500px; /* 최소 너비를 주어 가로 형태 유지 */
+    }
+
+    .faq-question-cell, .faq-answer-cell {
+        display: table-cell !important;
+        white-space: normal !important;
+        word-break: keep-all !important;
+        overflow: hidden;
+        /* 말줄임표(...) 제거 및 2줄 높이 고정 */
+        line-height: 1.4 !important;
+        max-height: 2.8em !important; 
+        height: 2.8em !important;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-overflow: clip; /* 말줄임표 대신 자르기 */
+    }
+
+    /* 3. CTA 테이블 */
+    .cta-table {
+        min-width: 100%;
+    }
+
+    /* 4. H1 제목: 최대 2줄까지 허용 */
+    .preview-container h1 {
+        font-size: 1.2rem !important;
+        white-space: normal !important;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        line-height: 1.4 !important;
+        text-align: left !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* H2, H3 모바일 크기 추가 조정 */
+    .entry-content h2 {
+        font-size: 1.2rem !important;
+        padding: 1rem 1.2rem !important;
+    }
+
+    .entry-content h3 {
+        font-size: 1.1rem !important;
+    }
+
+    /* 5. 공통 셀 설정 (기본정보 등) */
+    table td, table th {
+        font-size: 14px;
+        padding: 10px 15px !important;
+        white-space: nowrap !important; /* 기본정보는 한 줄 유지 */
+    }
 }
